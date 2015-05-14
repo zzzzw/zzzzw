@@ -1,0 +1,2 @@
+org.eclipse.jst.server.core
+D:\软件安装处\Java\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\chc8\upload
