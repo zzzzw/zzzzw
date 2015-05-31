@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.henu.domain.Person" table="person" catalog="test">
+		<id name="id" type="java.lang.Integer">
+			<colum name="id"/>
+			<generator class="native"></generator>		
+		</id>
+		<property name="name" type="java.lang.String">
+			<colum name="name" length="20" not-null="ture"/>
+		</property>
+		<property name="name" type="java.lang.Interger">
+			<colum name="age"/>
+		</property>
+		<<property name="major" type="java.lang.String">
+			<colum name="major length="45"/>
+		</property>
+	
+	</class>
+</hibernate-mapping>
