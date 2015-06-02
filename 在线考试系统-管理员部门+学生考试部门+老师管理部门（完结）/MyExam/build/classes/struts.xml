@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts><!-- 根节点 -->
+	<constant name="struts.i18n.encoding" value="gb2312"></constant>
+	<package name="struts2" extends="struts-default">
+	    <action name="login" class="action.exam.LoginAction">
+ 			<result name="studentSuccess" type="chain">getRandomSubject</result><!--进入考试页面-->
+ 			<result name="teacherSuccess" type="redirect">/teacher/index.html</result><!--老师登录成功页面-->
+ 			<result name="administratorSuccess" type="redirect">/administrator/index.html</result><!--管理员登录成功页面-->
+ 			<result name="input">/login.jsp</result><!--登录失败页面-->
+ 		</action>
+ 		<action name="addstudent" class="action.exam.addstudent">
+ 			<result name="success" type="redirect">/administrator/sAdd.jsp</result><!--重定向到学生信息添加页面-->
+ 			<result name="input">/administrator/sAdd.jsp</result><!--添加失败，重定向到学生信息添加添加页面-->
+ 		</action>
+ 		<action name="addteacher" class="action.exam.addteacher">
+ 			<result name="success" type="redirect">/administrator/tAdd.jsp</result><!--重定向到老师添加页面-->
+ 			<result name="input">/administrator/tAdd.jsp</result><!--添加失败，装到老师添加页面-->
+ 		</action>
+ 		<action name="studentQuery" class="action.exam.studentQuery"><!-- studentQuery -->
+ 			<result name="success">/administrator/studentManage.jsp</result>
+ 		</action>
+        <action name="teacherQuery" class="action.exam.teacherQuery">
+ 			<result name="success" >/administrator/teacherManage.jsp</result><!-- teacherQuery -->
+  		</action>
+  		<action name="studentShow" class="action.exam.studentShow">
+ 			<result name="success">/administrator/studentShow.jsp</result><!-- studentshow -->
+ 		</action>
+ 		<action name="teacherShow" class="action.exam.teacherShow">
+ 			<result name="success">/administrator/teacherShow.jsp</result><!-- teachershow -->
+ 		</action>
+ 		<action name="studentDelete" class="action.exam.studentDelete">
+ 			<result name="success" type="redirectAction">studentQuery.action</result><!--after delete student,redirect-->
+ 		</action> 		
+ 		<action name="teacherDelete" class="action.exam.teacherDelete">
+ 			<result name="success" type="redirectAction">teacherQuery.action</result><!-- after delete student ,redirect-->
+ 		</action>
+ 		<action name="studentUpdateBefore" class="action.exam.studentUpdateBefore">
+ 			<result name="success">/administrator/studentUpdate.jsp</result><!--beforeUpdate-student-->
+ 		</action>
+ 		<action name="studentUpdate" class="action.exam.studentUpdate">
+ 			<result name="success">/administrator/studentUpdate.jsp</result><!--afterUpdate-student-->
+ 		</action>
+ 		<action name="teacherUpdateBefore" class="action.exam.teacherUpdateBefore">
+ 			<result name="success">/administrator/teacherUpdate.jsp</result><!--beforeUpdate-teacher-->
+ 		</action>
+ 		<action name="teacherUpdate" class="action.exam.teacherUpdate">
+ 			<result name="success">/administrator/teacherUpdate.jsp</result><!--afterUpdate-teacher-->
+ 		</action>
+ 		<action name="administratorManageupdate" class="action.exam.administratorManageupdate">
+ 			<result name="success" >/administrator/administrator.jsp</result><!--Administrator-ManagerUpdate-->
+ 		</action>
+ 		<action name="getRandomSubject" class="action.exam.GetRandomSubject">
+ 			<result name="success">/student/index.jsp</result><!--跳转到考试页面-->
+ 		</action>
+ 		<action name="submitExam" class="action.exam.SubmitExamAction">
+ 			<result name="success">/student/examResult.jsp</result><!-- 跳转到得分的界面-->
+ 		</action>
+ 		<action name="addchoicequestion" class="action.exam.addchoicequestion">
+ 			<result name="success" type="redirect">/teacher/cAdd.jsp</result><!--重定向到试题添加页面-->
+ 			<result name="input">/teacher/cAdd.jsp</result><!--请求转发到试题添加页面-->
+ 		</action>
+ 		<action name="addfillquestion" class="action.exam.addfillquestion">
+ 			<result name="success" type="redirect">/teacher/fAdd.jsp</result><!--重定向到试题添加页面-->
+ 			<result name="input">/teacher/fAdd.jsp</result><!--请求转发到试题添加页面-->
+ 		</action>
+ 		<action name="choicequestionQuery" class="action.exam.choicequestionQuery">
+ 			<result name="success">/teacher/choicequestionManage.jsp</result><!--跳转到选择题试题列表管理页面-->
+ 		</action>
+ 		<action name="fillquestionQuery" class="action.exam.fillquestionQuery">
+ 			<result name="success">/teacher/fillquestionManage.jsp</result><!--跳转填空题试题列表管理页面-->
+ 		</action>
+ 		<action name="choicequestionShow" class="action.exam.choicequestionShow">
+ 			<result name="success">/teacher/choicequestionShow.jsp</result><!--跳转到选择题查看页面-->
+ 		</action>
+ 		<action name="fillquestionShow" class="action.exam.fillquestionShow">
+ 			<result name="success">/teacher/fillquestionShow.jsp</result><!--跳转到填空题查看页面-->
+ 		</action>
+ 		<action name="choicequestionUpdateBefore" class="action.exam.choicequestionUpdateBefore">
+ 			<result name="success">/teacher/choicequestionUpdate.jsp</result><!--选这题修改前-->
+ 		</action>
+ 		<action name="choicequestionUpdate" class="action.exam.choicequestionUpdate">
+ 			<result name="success">/teacher/choicequestionUpdate.jsp</result><!--选这题修改后-->
+ 		</action>
+ 		<action name="fillquestionUpdateBefore" class="action.exam.fillquestionUpdateBefore">
+ 			<result name="success">/teacher/fillquestionUpdate.jsp</result><!--填空题修改前-->
+ 		</action>
+ 		<action name="fillquestionUpdate" class="action.exam.fillquestionUpdate">
+ 			<result name="success">/teacher/fillquestionUpdate.jsp</result><!--填空题修改后-->
+ 		</action>
+ 		<action name="choicequestionDelete" class="action.exam.choicequestionDelete">
+ 			<result name="success" type="redirectAction">choicequestionQuery.action</result><!--删除选择题-->
+ 		</action>
+ 		<action name="fillquestionDelete" class="action.exam.fillquestionDelete">
+ 			<result name="success" type="redirectAction">fillquestionQuery.action</result><!--删除填空题-->
+ 		</action>
+ 		<action name="teacherManageupdate" class="action.exam.teacherManageupdate">
+ 			<result name="success" >/teacher/teacher.jsp</result><!--跳转到试题更新页面-->
+ 		</action>
+ 	
+	</package>	
+</struts>
