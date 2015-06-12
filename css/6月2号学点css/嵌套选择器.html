@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>嵌套选择器</title>
+</head>
+<style>
+	p{
+		color: blue;
+		text-align: center;
+	}
+	.marked{
+		background: red;
+
+	}
+	.marked p{
+		color: white;
+	}
+	.m001 p{
+		text-align: left;
+	}
+
+</style>
+<body>
+	<p>this is paragraph has blue text,and is center aligned</p>
+	<div class="marked"><p>this paragraph has not blue text.</p></div>
+	<p>p element inside a "marked: classed element keeps the alignment style,but has a differert text color.</p>
+	<div class="m001"><p>hello world!</p></div>
+</body>
+</html>

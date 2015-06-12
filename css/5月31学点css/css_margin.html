@@ -1,0 +1,36 @@
+<!-- Margin -->
+
+<!-- margin清除周围的元素（外边框）的区域。margin没有背景颜色，是完全透明的 -->
+
+<!-- margin可以单独改变元素的上，下，左，右边距。也可以一次改变所有的属性。 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css-margin</title>
+</head>
+<style>
+	p{
+		background-color:pink;
+	}
+	p.margin{
+		margin-top: 100px;
+		margin-bottom: 100px;
+		margin-right: 50px;
+		margin-left: 50px;
+	}
+	p.ex1{
+		margin-top: 2cm;
+	}
+	p.bottommargin{
+		margin-bottom: 25%;
+	}
+</style>
+<body>
+	<p>this is a paragraph with no specified margins.</p>
+    <p class="margin">this is a paragraph with specified margins</p>
+	<p class="ex1"> A paragraph with a 2 cm top margin.</p>
+
+	<p class="ex2">this is a paragraph with a specified bottom margin.</p>
+</body>
+</html>
