@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+	<h1>this is he first paragraph JavaScript</h1>
+	<p>清输入数字，如果输入值不是数字，浏览器会弹出提示框。</p>
+	<input type="text" id="demo">
+	<script>
+    function myFunction()
+    {
+    	var x=document.getElementById("demo");
+    	if(x=''||isNaN(x))
+    	{
+    		alert("this is not the number");
+    	}
+    }
+	</script>
+	<input type="button" onclick="myFunction()" value="hit me"/>
+</body>
+</html>

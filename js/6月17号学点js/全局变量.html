@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+	<p>全局变量在任何脚本和函数中都可以访问</p>
+	<p id="demo"></p>
+	<script>
+	var carName="Volvo";
+	myFunction();
+	function myFunction()
+	{
+		document.getElementById("demo").innerHTML="I can display "+carName;
+	}
+	</script>
+
+	
+</body>
+</html>

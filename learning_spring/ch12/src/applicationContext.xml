@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+
+   <context:annotation-config/>
+   <!--扫描com.henu.app包及其子包  -->
+   <context:component-scan base-package="com.henu.app"/>
+   <!--启动@AspectJ支持-->
+   <aop:aspectj-autoproxy />
+   
+
+  <!-- 关于Animal的Bean配置 -->
+  <bean id="imp" class="com.henu.app.Bird" />
+  <!-- 增加对zz_Zoo对象的配置-->
+  <bean id="zoo" class="com.henu.app.ZZ_Zoo">
+    <!-- 指定两者之间的关系，这里会引发调用setAnimal()方法-->
+  	<property name = "animal"  ref = "imp"/>
+  </bean>
+  <!-- 定义关于Student类的Bean，其别名为stu或者s，作用域为prototype -->
+  <bean id="student" class="com.henu.app.Student" name="stu;s" scope="prototype">
+  	<!-- 为Student实例的name属性赋值 -->
+  	<property name="name">
+  		<!-- 使用value元素为类的属性赋值 -->
+  		<value>Melon</value>
+  	</property>
+  	<!-- 为Student实例的age属性赋值 ，直接采用property元素的value属性为类的属性赋值 -->
+  	<property name="age" value="2" />
+  	<!-- 为List类型的属性赋值 -->
+  	<property name="subject">
+  		<list>
+  			<value>Java EE开发技术</value>
+  			<value>面向对象程序设计</value>
+  		</list>
+  	</property>
+  </bean>
+
+<!--使用init-method属性和detroy-method属性配置Bean初始化和注销的方法-->
+<bean id="account" class="com.henu.app.Account" autowire="byName" init-method="init" destroy-method="destroy"/>
+<!-- SetterDI的配置 -->
+<bean id="setterDI" class="com.henu.app.SetterDI">
+	<property name="animal" ref="imp"/>
+</bean>
+
+  <bean id="constructorDI" class="com.henu.app.ConstructorDI">
+   <!-- 使用constructor-arg元素，为构造方法中的参数初始化 -->
+   <constructor-arg ref="imp"/>
+   <!-- 另外一种写法
+   <constructor-arg>
+   	    <ref bean="imp"/>
+   </constructor-arg>
+   -->
+  </bean>
+
+  <bean id="woodpecker" class="com.henu.app.Woodpecker">
+  		<!-- 为Woodpecker的birdName注入值"啄木鸟"-->
+  		<property name="birdName" value="啄木鸟"/>
+  		<!-- 为Woodpecker的birdId注入值"007"-->  		
+  		<property name="birdId" value="007"/>
+  		<!-- 
+  		或者采用下面的方式为基本类型的属性注入值
+  		 <property name="birdName">
+  		 	<value>啄木鸟</value>
+  		 </property>
+  		 <property name="birdId">
+  		 	<value>007</value>
+  		 </property>
+  		-->
+  </bean>
+<!-- 配置属性为集合类型 的Bean -->
+<bean id="collection" class="com.henu.app.CollectionObj">
+  <!-- 为CollectionObj类中的fieldProp属性通过setter方法初始化-->
+  <!-- fieldProp属性为Properties（java.util. Properties）类型-->
+  <property name="fieldProp">
+    <props>
+        <prop key="administrator">administrator@example.org</prop>
+        <prop key="support">support@example.org</prop>
+        <prop key="development">development@example.org</prop>
+    </props>
+  </property>
+  <!--调用setFieldList()方法为fieldList属性初始化，fieldList属性为List（java.util.List）类型 -->
+  <property name="fieldList">
+    <list>
+    	<value>List One</value>
+    	<value>List Two</value>
+    </list>
+  </property>
+  <!--调用setFieldMap()方法为fieldMap属性初始化，fieldMap属性为Map（java.util.Map）类型 -->
+  <property name="fieldMap">
+    <map>
+        <entry key="k1" value="Value One"/>
+        <entry key ="k2" value="Value Two"/>
+    </map>
+  </property>
+  <!--调用setFieldSet()方法为fieldSet属性初始化，fieldSet属性为Set（java.util. Set）类型 -->
+   <property name="fieldSet">
+    <set>
+        <value>Set One</value>
+        <value>Set Two</value>
+    </set>
+  </property>
+   <!--调用setFieldArray()方法为fieldArray属性初始化，fieldArray属性为数组类型 -->
+  <property name="fieldArray">
+  	<array>
+  		<value>Array One</value>
+  		<value>Array Two</value>
+  	</array>
+  </property>
+</bean>
+
+  <!-- 为WoodPecker配置Bean -->
+   <bean name="animal" class="com.henu.app.Woodpecker">
+     	<property name="birdName" value="啄木鸟"/>
+  		<property name="birdId" value="7"/>
+   </bean>
+   <bean name="swallow" class="com.henu.app.Woodpecker">
+  		<property name="birdName" value="海燕"/>
+  		<property name="birdId" value="9"/>
+  </bean>
+  <!--配置AutowireByName类，并设置autowire属性为byName，它将根据属性的名称自动匹配配置文件中已定义的Bean-->
+  <bean id="byname" class="com.henu.app.AutowireByName" autowire="byName" />
+
+  <!-- 配置ResourceAnnotation -->
+  <bean id="resource" class="com.henu.app.ResourceAnnotation"/>
+  <!-- 配备ComponentAnnotation -->
+  <bean id="component" class="com.henu.app.ComponentAnnotation"/>
+  <!-- 配置Woodpeacker2 -->
+  <bean id="woodpecker2" class="com.henu.app.Woodpecker2"/>
+  <!-- 配置LifecycleAnnotation -->
+  <bean id="lifecycle" class="com.henu.app.LifecycleAnnotation" /> 
+  <!-- 配置LogHandler -->
+  <bean id="logHandler" class="com.henu.aop.LogHandler" />
+</beans>

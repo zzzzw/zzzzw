@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<h1>我的第一段 JavaScript</h1>
+	<p id="demo">
+		JavaScript能改变HTML元素的样式。
+	</p>
+</head>
+<body>
+	<script>
+    function myFunction()
+    {
+    	x=document.getElementById("demo"); //find the element
+    	x.style.color="#ff0000"; //change the style
+    }
+	</script>
+	<input type="button" onclick="myFunction()" value="hit me">
+</body>
+</html>
